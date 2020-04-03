@@ -1,0 +1,259 @@
+*{
+	font-family: "微软雅黑";
+}
+
+/*以下为vr的二级页面*/
+.third_index
+{
+	width: 85%;
+	left: 15%;
+	position: absolute;
+	display: none;
+}
+
+.third_index .se_title
+{
+	width:100%;
+	height:380px;
+	background-image: url(../images/t1.jpg);
+	background-position: center;
+	background-size:cover;
+	background-repeat: no-repeat;
+}
+
+.third_index .se_tl
+{
+	width:360px;
+	height:380px;
+	background-color:#a5b300;
+	position: relative;
+
+}
+
+.third_index .tl_right
+{
+    height: 50px;
+    left: 400px;
+    line-height: 50px;
+    position: absolute;
+    text-align: center;
+    top: 140px;
+    width: 455px;
+    font-size: 20px;
+	background-color:#A5B300;
+}
+
+.third_index .lunbo ol li.bg
+{
+	background-color:#A5B300;
+}
+
+
+
+/*以下为ar的二级页面*/
+.second_index
+{
+	width: 85%;
+	left: 15%;
+	position: absolute;
+	display: none;
+	
+	
+}
+
+
+
+.se_title
+{
+	width:100%;
+	height:380px;
+	background-image: url(../images/s1.jpg);
+	background-position: center;
+	background-size:cover;
+	background-repeat: no-repeat;
+}
+
+.se_tl
+{
+	width:360px;
+	height:380px;
+	background-color:#346499;
+	position: relative;
+
+}
+.tl_center
+{
+	width: 300px;
+	height: 100%;
+	margin: auto;
+	text-align: center;
+	
+}
+.tl_right
+{
+    height: 50px;
+    left: 400px;
+    line-height: 50px;
+    position: absolute;
+    text-align: center;
+    top: 140px;
+    width: 455px;
+    font-size: 20px;
+	background-color:#346499;
+}
+/*标题部分*/
+
+.se_img
+{
+	background-color:#E6E6E6;
+	width: 100%;
+	height: 470px;
+	position: relative;
+}
+
+.se_img p
+{
+	color:#998e8a;
+	font-size:2em;
+	height:70px;
+	width: 200px;
+	display: block;
+	line-height: 70px;
+	margin-left: 50px;
+}
+.lunbo
+{
+	width: 100%;
+	height:400px;
+	background-color:#E6E6E6;
+	position: relative;
+	
+}
+.lunbo ol li.bg
+{
+	background-color: #008CBA;
+}
+.lunbo ul
+{
+	width: 100%;
+	height:100%;
+	overflow: hidden;
+	
+}
+.lunbo ul li
+{
+	width: 100%;
+	height:100%;
+
+		
+}
+.lunbo img
+{
+	width: 100%;
+	height: auto;
+
+}
+.l_ol
+{
+	width: 100%;
+	height: 30px;
+	background-color: rgba(255,255,255,0.5);
+	position: absolute;
+	bottom: 0;
+
+}
+.lunbo ol
+{
+	width: 100px;
+	height: 20px;
+	margin: auto;
+	margin-top: 5px;	
+}
+
+.lunbo ol li
+{	
+	float: left;
+	height: 20px;
+	width: 20px;
+	background-color:#454b46; 
+	-moz-border-radius: 20px; 
+	-webkit-border-radius:20px; 
+	border-radius:20px;
+	margin-left:5px ;
+	cursor: pointer;
+
+
+}
+
+
+/*图片轮播部分*/
+
+.se_wz
+{
+	background-color: #F4F4F4;
+	width: 100%;
+	height: 2300px;
+	position: absolute;
+
+	
+}
+
+.se_wc
+{	
+	top: 100px;
+	height: 1800px;
+	width: 960px;
+	margin: auto;
+	position: relative;
+	color: #000000;
+}
+
+.se_wl
+{
+	width: 700px;
+	height: 1700px;
+	float: left;
+}
+
+.se_wl h2
+{
+	display: block;
+	width: 100%;
+	height: 70px;
+	border-top-width: thin;
+	border-top-style: solid;
+	border-top-color: #999;	
+}
+
+.se_wl span
+{
+	line-height: 2;
+	font-weight: 100;
+	
+}
+
+.se_wr
+{
+	width: 200px;
+	height: 500px;
+	float: right;
+	color: #223887;
+}
+
+.se_wr div
+{
+	width: 100%;
+	height: 75px;
+	border-top-width: 2px;
+	border-top-style: solid;
+	border-top-color: #7a84a7;
+	line-height: 2;
+	padding-left: 5px;
+	font-size: 1.1em;	
+}
+
+.se_wr p
+{
+	color: #727272;
+	font-size: 15px;
+}

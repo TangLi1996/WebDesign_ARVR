@@ -1,0 +1,366 @@
+/*定义组件的css*/
+@font-face {
+	font-family: 'fontawesome';
+	src:url('../../font/topics/fontawesome/fontawesome.eot?-v92fkb');
+	src:url('../../font/topics/fontawesome/fontawesome.eot?#iefix-v92fkb') format('embedded-opentype'),
+		url('../../font/topics/fontawesome/fontawesome.woff?-v92fkb') format('woff'),
+		url('../../font/topics/fontawesome/fontawesome.ttf?-v92fkb') format('truetype'),
+		url('../../font/topics/fontawesome/fontawesome.svg?-v92fkb#fontawesome') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Blokk';
+	src: url('../../font/topics/blokk/BLOKKRegular.eot');
+	src: url('../../font/topics/blokk/BLOKKRegular.eot?#iefix') format('embedded-opentype'),
+		 url('../../font/topics/blokk/BLOKKRegular.woff') format('woff'),
+		 url('../../font/topics/blokk/BLOKKRegular.svg#BLOKKRegular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/**小图标**/
+body {
+	position: relative;
+}
+
+.noscroll {
+	overflow: hidden;
+}
+
+.grid-wrap {
+	margin: 10px auto 0;
+	max-width: 1090px;
+	width: 100%;
+	padding: 0;
+	-webkit-perspective: 1500px;
+	perspective: 1500px; /* 定义 3D 元素距视图的距离 */
+}
+
+.grid {
+	position: relative;
+	-webkit-transition: all 0.5s cubic-bezier(0,0,0.25,1);
+	transition: all 0.5s cubic-bezier(0,0,0.25,1);
+	/*语法：transition: property duration timing-function delay;
+	transition-property	规定设置过渡效果的 CSS 属性的名称。
+transition-duration	规定完成过渡效果需要多少秒或毫秒。
+transition-timing-function	规定速度效果的速度曲线。
+transition-delay	定义过渡效果何时开始。*/
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	/*preserve-3d表示所有子元素在3D空间中呈现*/
+}
+
+
+.view-full .grid {
+	-webkit-transform: translateZ(-1500px);
+	transform: translateZ(-1500px);
+	/*定义 3D 转换，只是用 Z 轴的值。*/
+}
+
+.grid figure,
+.grid .placeholder {
+	width: 340px;
+	height: 400px;
+}
+.grid .grid_t
+{
+	height: 70px;
+	width: 240px;
+	background:#FFF;
+
+}
+.grid .grid_t h5
+{
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 6%;
+	width:80%;
+	color:#333;
+
+}
+
+.grid figure {
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 120px;
+	display: inline-block;
+	cursor: pointer;/*光标呈现为指示链接的指针（一只手）*/
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;/*不可以选择文本*/
+	padding-left: 6%;
+}
+
+.grid figure.active {
+	opacity: 0;/*设置不透明度 文本和背景色都受到不透明级别的影响*/
+}
+
+.grid .placeholder {
+	pointer-events: none;/*元素永远不会成为鼠标事件的target*/
+	position: absolute;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	-webkit-transition: all 0.5s ease-out;
+	transition: all 0.5s ease-out;
+}
+
+.placeholder > div {
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;/*定义当元素不面向屏幕时是否可见。*/
+}
+
+.placeholder .front img {
+	width: 100%;
+	height: 100%;
+}
+
+.placeholder .back {
+	background: white;
+	-webkit-transform: rotateY(180deg);
+	transform: rotateY(180deg); /*定义沿着 Y 轴的 3D 旋转*/
+}
+
+.view-full .placeholder {
+	-webkit-transition: all 0.5s 0.1s cubic-bezier(0,0,0.25,1);
+	transition: all 0.5s 0.1s cubic-bezier(0,0,0.25,1);
+}
+
+.vertical .view-full .placeholder {
+	-webkit-transform: translateZ(1500px) rotateX(-179.9deg);
+	transform: translateZ(1500px) rotateX(-179.9deg); /* FF, Chrome, can we agree on one direction, pleeease? */
+}
+
+.horizontal .view-full .placeholder {
+	-webkit-transform: translateZ(1500px) rotateY(-179.9deg);
+	transform: translateZ(1500px) rotateY(-179.9deg);
+}
+
+.grid figure img {
+	display: block;
+	width: 100%;
+}
+
+.content,
+.loading {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	pointer-events: none; /*将onlick事件去掉，不能在IE < 11 工作 */
+}
+
+.content {
+	overflow-y: scroll;
+	height: 0; 
+	background: #fff;
+	visibility: hidden;
+	z-index: 400;
+	-webkit-overflow-scrolling: touch;
+	/*过渡中的gif显示问题*/
+}
+
+
+.loading {
+	opacity: 0;/*加载中，透明*/
+	z-index: 1;/*设置元素的堆叠顺序，1为在前面显示*/
+	background: transparent
+	url(../../images/topics/preloader.gif) no-repeat center center;/*gif加载图*/
+	-webkit-transform: scale(0.5);
+	transform: scale(0.5);/*缩小0.5*/
+	-webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
+	transition: opacity 0.5s, transform 0.5s;
+}
+
+.loading.show {
+	opacity: 1;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+
+.content.show {
+	height: auto;
+	pointer-events: auto;
+	visibility: visible;
+}
+
+.content > div {
+	z-index: 10;
+	position: absolute;
+	top: -4px;
+	width: 100%;
+	overflow: hidden;
+	height: 0;
+	opacity: 0;
+	background: #fff;
+	left: 62px;
+}
+
+.content > div.show {
+	height: auto;
+	opacity: 1;	
+	-webkit-transition: opacity 0.6s;
+	transition: opacity 0.6s;
+}
+
+.icon:before {
+	font-family: 'fontawesome';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.close-content {
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	right: 10px;
+	font-size: 1.6em;
+	color: #aaa;
+	cursor: pointer;
+	pointer-events: none;
+	padding: 1em;
+	opacity: 0;
+	-webkit-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+}
+
+.close-content:hover {
+	color: #999;
+}
+
+.content > div.show ~ .close-content {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.close-content:before {
+	content: "\e602";
+}
+
+/* wenzhang content */
+
+.wenzhang-img,
+.wenzhang-text {
+	max-width: 600px;
+	width: 90%;
+	opacity: 0;
+	-webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
+	transition: opacity 0.5s, transform 0.5s;
+}
+
+.vertical .wenzhang-img,
+.vertical .wenzhang-text {
+	-webkit-transform: translateY(100px);
+	transform: translateY(100px);
+}
+
+.horizontal .wenzhang-img,
+.horizontal .wenzhang-text {
+	-webkit-transform: translateX(-100px);
+	transform: translateX(-100px);
+}
+
+.content > div.show .wenzhang-img,
+.content > div.show .wenzhang-text {
+	opacity: 1;
+}
+
+.vertical .content > div.show .wenzhang-img,
+.vertical .content > div.show .wenzhang-text {
+	-webkit-transform: translateY(0);
+	transform: translateY(0);
+}
+
+.horizontal .content > div.show .wenzhang-img,
+.horizontal .content > div.show .wenzhang-text {
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+}
+
+p.wenzhang-text:nth-child(2) {
+	-webkit-transition-delay: 0.1s;
+	transition-delay: 0.1s;
+}
+
+p.wenzhang-text:nth-child(3) {
+	-webkit-transition-delay: 0.2s;
+	transition-delay: 0.2s;
+}
+
+.wenzhang-img {
+	max-height: 400px;
+	background-color: #ddd;
+	margin: 30px auto;
+	overflow:hidden;
+	
+}
+
+.wenzhang-text {
+	text-align: left;
+	margin: 0 auto;
+	padding: 10px 0;
+	color: #666;
+	font-size: 1em;
+}
+
+.wenzhang-text:last-child {
+	padding-bottom: 100px;
+}
+
+/* Simple fallback */
+/*如果不支持任何这些，将显示一个简单的回退*/
+.no-pointerevents .content,
+.no-csstransforms3d .content,
+.no-csstransitions .content,
+.no-pointerevents .content > div,
+.no-csstransforms3d .content > div,
+.no-csstransitions .content > div,
+.no-pointerevents .close-content,
+.no-csstransforms3d .close-content,
+.no-csstransitions .close-content {
+	opacity: 1;
+	visibility: visible;
+	display: none;
+	height: auto;
+}
+
+.no-pointerevents .show .close-content,
+.no-csstransforms3d .show .close-content,
+.no-csstransition .show .close-content,
+.no-pointerevents div.show,
+.no-csstransforms3d div.show,
+.no-csstransitions div.show,
+.no-csstransitions .wenzhang-img,
+.no-csstransitions .wenzhang-text,
+.no-csstransforms3d .wenzhang-img,
+.no-csstransforms3d .wenzhang-text, 
+.no-pointerevents .wenzhang-img,
+.no-pointerevents .wenzhang-text {
+	display: block !important;
+	opacity: 1;
+}
+
+@media screen and (max-width: 1000px) {
+
+	.grid figure,
+	.grid .placeholder {
+		width: 240px;
+		height: 212px;
+	}
+
+}
